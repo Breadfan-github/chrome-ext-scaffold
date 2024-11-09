@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
-import { resolve } from "path";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,12 +23,16 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        popup: resolve(__dirname, "popup.html"),
-        options: resolve(__dirname, "options.html"),
+        popup: path.resolve(__dirname, "popup.html"),
       },
       output: {
         entryFileNames: "[name].js",
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });
